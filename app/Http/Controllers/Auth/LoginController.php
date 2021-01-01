@@ -47,6 +47,7 @@ class LoginController extends Controller
     * Create a new controller instance.
     * Login by email or phone and password
     */
+    //Abhay
     public function login(Request $request)
     {
         $input = $request->all();
@@ -72,9 +73,9 @@ class LoginController extends Controller
                 $getAdminData = $adminModel->getAdminDataById($adminId);
 
                 if($remember == 'true') {
-                    setcookie("admin_name",$input['email'],time()+60*60);          
-                    setcookie("admin_pass",base64_encode($input['password']),time()+60*60);  
-                    setcookie("remember",$input['remember'],time()+60*60);          
+                    setcookie("admin_name",$input['email'],time()+60*60);
+                    setcookie("admin_pass",base64_encode($input['password']),time()+60*60);
+                    setcookie("remember",$input['remember'],time()+60*60);
                 }
 
                 Session::put('adminId', $getAdminData['id']);
@@ -91,6 +92,7 @@ class LoginController extends Controller
         }
     }
 
+    //Abhay
     public function logout(Request $request ) {
         $request->session()->flush();
         Auth::logout();

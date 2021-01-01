@@ -2,7 +2,7 @@
 <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12 text-right">
-                        <a href="#modal-add-admin" class="modal-effect btn btn-az-primary" data-toggle="modal" data-effect="effect-scale">Add Admin</a>
+                        <a href="#modal-add-admin" class="modal-effect btn btn-az-primary" data-toggle="modal" data-effect="effect-scale">Agregar administrador</a>
                     </div>
                     <br/><br/><br/>
 
@@ -26,13 +26,12 @@
 
                     @endif
                     
-
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        Admin List
+                                        Lista de administración
                                     </div>
                                 </div>
                             </div>
@@ -43,11 +42,11 @@
                                             <thead>
                                                 <tr>
                                                     <th class="wd-20p">#</th>
-                                                    <th class="wd-20p">Name</th>
+                                                    <th class="wd-20p">Nombre</th>
                                                     <th class="wd-25p">Email</th>
-                                                    <th class="wd-20p">Phone</th>
-                                                    <th class="wd-15p">Added By</th>
-                                                    <th class="wd-20p">Action</th>
+                                                    <th class="wd-20p">Teléfono</th>
+                                                    <th class="wd-15p">Añadido por</th>
+                                                    <th class="wd-20p">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -77,7 +76,7 @@
                                                 @else 
                                                     <tr>
                                                         <div>
-                                                            No data found
+                                                            Datos no encontrados
                                                         </div>
                                                     </tr>
                                                 @endif
@@ -98,7 +97,7 @@
             <form method="post" action="{{ url('addAdmin') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h6 class="modal-title">Add Admin</h6>
+                    <h6 class="modal-title">Agregar administrador</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -107,31 +106,31 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Name: <span class="tx-danger">*</span></label>
-                                <input type="text" name="admin_name" class="form-control" placeholder="Enter your name" required>
+                                <label class="form-label">Nombre: <span class="tx-danger">*</span></label>
+                                <input type="text" name="admin_name" class="form-control" placeholder="Por favor, entrar su nombre" required>
                             </div><!-- form-group -->
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Email: <span class="tx-danger">*</span></label>
-                                <input type="text" name="email" class="form-control" placeholder="Enter your email" required>
+                                <input type="text" name="email" class="form-control" placeholder="Por favor, entrar su email" required>
                             </div><!-- form-group -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="form-label">Number: <span class="tx-danger">*</span></label>
-                            <input type="text" name="number" class="form-control" placeholder="Enter your number" required>
+                            <label class="form-label">Teléfono: <span class="tx-danger">*</span></label>
+                            <input type="text" name="number" class="form-control" placeholder="Por favor, entrar su teléfono" required>
                         </div><!-- form-group -->
                         <div class="col-md-6">
-                            <label class="form-label">Password: <span class="tx-danger">*</span></label>
-                            <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+                            <label class="form-label">Contraseña: <span class="tx-danger">*</span></label>
+                            <input type="password" name="password" class="form-control" placeholder="Por favor, entrar su contraseña" required>
                         </div><!-- form-group -->
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-indigo">Add</button>
-                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-indigo">Añadir</button>
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerca</button>
                 </div>
             </form>
         </div>
@@ -145,7 +144,7 @@
             <form method="post" action="{{ url('editAdmin') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h6 class="modal-title">Edit Admin</h6>
+                    <h6 class="modal-title">Editar administrador</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -162,31 +161,31 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Name: <span class="tx-danger">*</span></label>
-                                <input type="text" name="admin_name" id="admin_name" class="form-control" placeholder="Enter your name" required>
+                                <label class="form-label">Nombre: <span class="tx-danger">*</span></label>
+                                <input type="text" name="admin_name" id="admin_name" class="form-control" placeholder="Por favor, entrar su nombre" required>
                             </div><!-- form-group -->
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Email: <span class="tx-danger">*</span></label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Por favor, entrar su email" required>
                             </div><!-- form-group -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="form-label">Number: <span class="tx-danger">*</span></label>
-                            <input type="text" name="number" id="number" class="form-control" placeholder="Enter your number" required>
+                            <label class="form-label">Teléfono: <span class="tx-danger">*</span></label>
+                            <input type="text" name="number" id="number" class="form-control" placeholder="Por favor, entrar su teléfono" required>
                         </div><!-- form-group -->
                         <div class="col-md-6">
-                            <label class="form-label">Password:</label>
-                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                            <label class="form-label">Contraseña:</label>
+                            <input type="password" name="password" class="form-control" placeholder="Por favor, entrar su contraseña">
                         </div><!-- form-group -->
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-indigo">Update</button>
-                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-indigo">Actualizar</button>
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerca</button>
                 </div>
             </form>
         </div>
@@ -204,9 +203,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <span style="font-size: 48px;" class="text-danger">&#9888;</span>
-                    <h4 class="tx-danger mg-b-20">Do you want to delete this Admin !</h4>
+                    <h4 class="tx-danger mg-b-20">¿Quieres eliminar este administrador?</h4>
                     <input class="text d-none" id="del-admin-id" name="del-admin-id" value="">
-                    <button type="submit" class="btn btn-danger pd-x-25" aria-label="Close">Delete</button>
+                    <button type="submit" class="btn btn-danger pd-x-25" aria-label="Close">Eliminar</button>
                 </form>
             </div><!-- modal-body -->
         </div><!-- modal-content -->

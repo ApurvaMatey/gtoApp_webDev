@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Log;
+use File;
 
 //Models
 use App\Models\Web\CultureModel;
@@ -30,18 +31,41 @@ class CultureController extends Controller
         return view('masters.culture', $data);
     }
 
+    /* Function to get Culture data By ID */
+    //Abhay
+    public function getCultureById(Request $request)
+    {
+        $cultureModel = new CultureModel();
+        $cultureId = $_POST['cultureId'];
+        
+        /* Get all Culture data */
+        $cultureData = $cultureModel->getCultureById($cultureId);
+        // Log::error(json_encode($cultureData));
+        return json_encode($cultureData);
+    }
+
     /* Function to Create Culture */
     //Abhay
     public function addCulture(Request $request)
-    {   
+    {
         /* check post method */
         $cultureModel = new CultureModel();
         
         /* Form field */
         $title = $request->input('title');
         $description = $request->input('description');
-        $imagePath = $request->input('imagePath');
+        $imagePath = '';
         $url = $request->input('url');
+
+        /* For image uploading */
+        if($image = $request->file('imagePath')) {
+            $input['imagePath'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
+            $image->move($destinationPath, $input['imagePath']);
+            $imagePath = 'culture_images/'.$input['imagePath'];
+
+            Log::error($destinationPath);exit();
+        }
         
         /* Array for Culture */
         $insertArray = array(
@@ -49,7 +73,7 @@ class CultureController extends Controller
             'description' => $description,
             'imagePath' => $imagePath,
             'url' => $url,
-            'addedBy' => $this->adminSessionId,
+            'addedBy' => $request->session()->get('adminId'),
             'createdAt' => date('Y-m-d H:i:s'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
@@ -58,10 +82,10 @@ class CultureController extends Controller
         $insertCultureId = $cultureModel->insertCulture($insertArray);
         if ($insertCultureId > 0) {
             /* Final response */
-            return redirect()->route('culture')->with('success','Data saved successfully !!');
+            return redirect()->route('culture')->with('success','Datos guardados exitosamente !!');
         } else {
             /* If insertion fails */
-            return redirect()->route('culture')->with('error','Failed !! Data not saved !!');
+            return redirect()->route('culture')->with('error','Datos no guardados !!');
         }
     }
 
@@ -73,11 +97,22 @@ class CultureController extends Controller
         $cultureModel = new CultureModel();
         
         /* Form field */
-        $cultureId = $request->input('cultureId');
-        $title = $request->input('title');
-        $description = $request->input('description');
-        $imagePath = $request->input('imagePath');
-        $url = $request->input('url');
+        $cultureId = $request->input('edit-culture-id');
+        $title = $request->input('culture_title');
+        $description = $request->input('culture_description');
+        $imagePath = ''; /* Pending To Put old Link For save or unlink */
+        $url = $request->input('culture_url');
+
+        /* For image uploading */
+        if($image = $request->file('culture_imagePath')) {
+            $input['culture_imagePath'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
+            // $image->move($destinationPath, $input['culture_imagePath']);
+            $image->move(base_path($destinationPath), $image->getClientOriginalName());
+            $imagePath = 'culture_images/'.$input['culture_imagePath'];
+
+            Log::error(base_path($destinationPath));exit();
+        }
 
         /* Array for Update Culture */
         $updateArray = array(
@@ -85,17 +120,17 @@ class CultureController extends Controller
             'description' => $description,
             'imagePath' => $imagePath,
             'url' => $url,
-            'addedBy' => $this->adminSessionId,
+            'addedBy' => $request->session()->get('adminId'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
 
         /* Culture data */
         if($cultureModel->updateCulture($updateArray, $cultureId)) {
             /* Final response */
-            return redirect()->route('culture')->with('success','Data updated successfully !!');
+            return redirect()->route('culture')->with('success','Datos actualizados con éxito !!');
         } else {
             /* If updation fails */
-            return redirect()->route('culture')->with('error','Failed !! Data not saved !!');
+            return redirect()->route('culture')->with('error','Datos no guardados !!');
         }
     }
 
@@ -104,13 +139,13 @@ class CultureController extends Controller
     public function deleteCulture(Request $request)
     {   
         $cultureModel = new CultureModel();
-        $cultureId = $request->input('cultureId');
+        $cultureId = $request->input('del-culture-id');
 
         /* delete entry by id */
         if($cultureModel->deleteCultureById($cultureId)) {
-            return redirect()->route('culture')->with('success','Data deleted successfully !!.');
+            return redirect()->route('culture')->with('success','Datos eliminados con éxito !!.');
         } else {
-            return redirect()->route('culture')->with('error','Culture does not exists/deleted.');
+            return redirect()->route('culture')->with('error','La cultura no existe / eliminada.');
         }
     }
 }

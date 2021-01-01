@@ -63,7 +63,7 @@
             setTimeout(function () {
                 // Closing the alert 
                 $('.alert-success').alert('close'); 
-            }, 7000); 
+            }, 7000);
         </script>
     </body>
 </html>

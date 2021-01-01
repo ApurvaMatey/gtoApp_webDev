@@ -40,6 +40,7 @@ class AdminModel extends Model
         }
     }
 
+    //Abhay
     public function getAdminById($adminId)
     {
         $adminData = DB::table('tbl_admin')
@@ -107,6 +108,7 @@ class AdminModel extends Model
         }
     }
 
+    //Abhay
     public function insertAdmin($insertArray)
     {
         $adminId = DB::table('tbl_admin')
@@ -119,6 +121,7 @@ class AdminModel extends Model
         }
     }
 
+    //Abhay
     public function updateAdmin($updateArray, $adminId)
     {
         $updateAdminData = DB::table('tbl_admin')
@@ -132,6 +135,7 @@ class AdminModel extends Model
         }
     }
 
+    //Abhay
     public function deletedAdminById($adminId)
     {   
         $deleteAdmin = DB::table('tbl_admin')

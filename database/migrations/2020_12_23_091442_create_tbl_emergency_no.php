@@ -15,7 +15,7 @@ class CreateTblEmergencyNo extends Migration
     {
         Schema::create('tbl_emergency_no', function (Blueprint $table) {
             $table->increments("id");
-            $table->integer("number")->comment('3 digits only');
+            $table->string("number")->comment('3 digits only');
             $table->string("colorCode");
             $table->text("description");
             $table->integer("callCount");

@@ -30,6 +30,19 @@ class ScholarshipController extends Controller
         return view('masters.scholarship', $data);
     }
 
+    /* Function to get Scholarship data By ID */
+    //Abhay
+    public function getScholarshipById(Request $request)
+    {
+        $scholarshipModel = new ScholarshipModel();
+        $scholarshipId = $_POST['scholarshipId'];
+        
+        /* Get all Scholarship data */
+        $scholarshipData = $scholarshipModel->getScholarshipById($scholarshipId);
+        // Log::error(json_encode($scholarshipData));
+        return json_encode($scholarshipData);
+    }
+
     /* Function to Create Scholarship */
     //Abhay
     public function addScholarship(Request $request)
@@ -40,16 +53,24 @@ class ScholarshipController extends Controller
         /* Form field */
         $title = $request->input('title');
         $description = $request->input('description');
-        $imagePath = $request->input('imagePath');
+        $imagePath = '';
         $url = $request->input('url');
         
+        /* For image uploading */
+        if($image = $request->file('imagePath')) {
+            $input['imagePath'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
+            $image->move($destinationPath, $input['imagePath']);
+            $imagePath = 'scholarship_images/'.$input['imagePath'];
+        }
+
         /* Array for Scholarship */
         $insertArray = array(
             'title' => $title,
             'description' => $description,
             'imagePath' => $imagePath,
             'url' => $url,
-            'addedBy' => $this->adminSessionId,
+            'addedBy' => $request->session()->get('adminId'),
             'createdAt' => date('Y-m-d H:i:s'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
@@ -58,10 +79,10 @@ class ScholarshipController extends Controller
         $insertScholarshipId = $scholarshipModel->insertScholarship($insertArray);
         if ($insertScholarshipId > 0) {
             /* Final response */
-            return redirect()->route('scholarship')->with('success','Data saved successfully !!');
+            return redirect()->route('scholarship')->with('success','Datos guardados exitosamente !!');
         } else {
             /* If insertion fails */
-            return redirect()->route('scholarship')->with('error','Failed !! Data not saved !!');
+            return redirect()->route('scholarship')->with('error','Datos no guardados !!');
         }
     }
 
@@ -73,11 +94,19 @@ class ScholarshipController extends Controller
         $scholarshipModel = new ScholarshipModel();
         
         /* Form field */
-        $scholarshipId = $request->input('scholarshipId');
-        $title = $request->input('title');
-        $description = $request->input('description');
-        $imagePath = $request->input('imagePath');
-        $url = $request->input('url');
+        $scholarshipId = $request->input('edit-scholarship-id');
+        $title = $request->input('scholarship_title');
+        $description = $request->input('scholarship_description');
+        $imagePath = ''; /* Pending To Put old Link For save or unlink */
+        $url = $request->input('scholarship_url');
+
+        /* For image uploading */
+        if($image = $request->file('scholarship_imagePath')) {
+            $input['scholarship_imagePath'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
+            $image->move($destinationPath, $input['scholarship_imagePath']);
+            $imagePath = 'scholarship_images/'.$input['scholarship_imagePath'];
+        }
 
         /* Array for Update Scholarship */
         $updateArray = array(
@@ -85,17 +114,17 @@ class ScholarshipController extends Controller
             'description' => $description,
             'imagePath' => $imagePath,
             'url' => $url,
-            'addedBy' => $this->adminSessionId,
+            'addedBy' => $request->session()->get('adminId'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
 
         /* Scholarship data */
         if($scholarshipModel->updateScholarship($updateArray, $scholarshipId)) {
             /* Final response */
-            return redirect()->route('scholarship')->with('success','Data updated successfully !!');
+            return redirect()->route('scholarship')->with('success','Datos actualizados con éxito !!');
         } else {
             /* If updation fails */
-            return redirect()->route('scholarship')->with('error','Failed !! Data not saved !!');
+            return redirect()->route('scholarship')->with('error','Datos no guardados !!');
         }
     }
 
@@ -104,13 +133,13 @@ class ScholarshipController extends Controller
     public function deleteScholarship(Request $request)
     {   
         $scholarshipModel = new ScholarshipModel();
-        $scholarshipId = $request->input('scholarshipId');
+        $scholarshipId = $request->input('del-scholarship-id');
 
         /* delete entry by id */
         if($scholarshipModel->deleteScholarshipById($scholarshipId)) {
-            return redirect()->route('scholarship')->with('success','Data deleted successfully !!.');
+            return redirect()->route('scholarship')->with('success','Datos eliminados con éxito !!.');
         } else {
-            return redirect()->route('scholarship')->with('error','Scholarship does not exists/deleted.');
+            return redirect()->route('scholarship')->with('error','La beca no existe / eliminada.');
         }
     }
 }

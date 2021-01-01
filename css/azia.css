@@ -11169,7 +11169,7 @@ body {
   font-weight: 700;
   font-size: 28px;
   font-family: 'Poppins', sans-serif;
-  text-transform: lowercase;
+  text-transform: uppercase;
   color: #5b47fb;
   letter-spacing: -1px;
   display: flex;

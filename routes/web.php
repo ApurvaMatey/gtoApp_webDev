@@ -50,8 +50,32 @@ Route::post('/deleteAdmin', [AdminController::class,'deleteAdmin'])->name('delet
 /* Culture Master */
 Route::get('/culture', [CultureController::class,'getCultureList'])->name('culture');
 
+/* Get Culture By ID */
+Route::post('/getCulture', [CultureController::class,'getCultureById'])->name('getCulture');
+
+/* Add Culture */
+Route::post('/addCulture', [CultureController::class,'addCulture'])->name('add');
+
+/* Edit Culture */
+Route::post('/editCulture', [CultureController::class,'editCulture'])->name('edit');
+
+/* Delete Culture */
+Route::post('/deleteCulture', [CultureController::class,'deleteCulture'])->name('delete');
+
 /* Emergency Master */
 Route::get('/emergency', [EmergencyController::class,'getEmergencyList'])->name('emergency');
 
 /* Scholarship Master */
 Route::get('/scholarship', [ScholarshipController::class,'getScholarshipList'])->name('scholarship');
+
+/* Get Scholarship By ID */
+Route::post('/getScholarship', [ScholarshipController::class,'getScholarshipById'])->name('getScholarship');
+
+/* Add Scholarship */
+Route::post('/addScholarship', [ScholarshipController::class,'addScholarship'])->name('add');
+
+/* Edit Scholarship */
+Route::post('/editScholarship', [ScholarshipController::class,'editScholarship'])->name('edit');
+
+/* Delete Scholarship */
+Route::post('/deleteScholarship', [ScholarshipController::class,'deleteScholarship'])->name('delete');

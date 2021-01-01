@@ -77,14 +77,14 @@ class AdminController extends Controller
             $insertAdminId = $adminModel->insertAdmin($insertArray);
             if ($insertAdminId > 0) {
                 /* Final response */
-                return redirect()->route('admin')->with('success','Data saved successfully !!');
+                return redirect()->route('admin')->with('success','Datos guardados exitosamente !!');
             } else {
                 /* If insertion fails */
-                return redirect()->route('admin')->with('error','Failed !! Data not saved !!');
+                return redirect()->route('admin')->with('error','Datos no guardados !!');
             }
         } else {
             /* If Admin already exists */
-            return redirect()->route('admin')->with('error','Email already exists.');
+            return redirect()->route('admin')->with('error','el Email ya existe.');
         }
     }
 
@@ -127,15 +127,15 @@ class AdminController extends Controller
                 /* Admin data */
                 if($adminModel->updateAdmin($updateArray, $adminId)) {
                     /* Final response */
-                    return redirect()->route('admin')->with('success','Data updated successfully !!');
+                    return redirect()->route('admin')->with('success','Datos actualizados con éxito !!');
                 }
             } else {
                 /* Check If Email Is already exist */
-                return redirect()->route('admin')->with('error','Email already exists.');
+                return redirect()->route('admin')->with('error','el Email ya existe.');
             }
         } else {
             /* If Admin already exists */
-            return redirect()->route('admin')->with('error','This Admin does not exists.');
+            return redirect()->route('admin')->with('error','Este administrador no existe.');
         }
     }
 
@@ -148,9 +148,9 @@ class AdminController extends Controller
 
         /* update isdeleted column by id */
         if($adminModel->deletedAdminById($adminId)) {
-            return redirect()->route('admin')->with('success','Data deleted successfully !!.');
+            return redirect()->route('admin')->with('success','Datos eliminados con éxito !!.');
         } else {
-            return redirect()->route('admin')->with('error','Admin does not exists/deleted.');
+            return redirect()->route('admin')->with('error','El administrador no existe / eliminado.');
         }
     }
 }

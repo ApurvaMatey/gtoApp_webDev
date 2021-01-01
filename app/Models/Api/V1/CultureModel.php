@@ -23,7 +23,7 @@ class CultureModel extends Model
                     'id' => $row->id,
                     'title' => $row->title,
                     'description' => $row->description,
-                    'imagePath' => $row->imagePath,
+                    'imagePath' => env('LINK_PATH').$row->imagePath,
                     'url' => $row->url,
                     'addedBy' => $row->addedBy,
                     'createdAt' => $row->createdAt,
