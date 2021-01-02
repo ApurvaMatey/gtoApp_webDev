@@ -59,7 +59,8 @@ class ScholarshipController extends Controller
         /* For image uploading */
         if($image = $request->file('imagePath')) {
             $input['imagePath'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
+            $destinationPath = public_path('uploads/scholarship_images'); //upload path for online
+            // $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
             $image->move($destinationPath, $input['imagePath']);
             $imagePath = 'scholarship_images/'.$input['imagePath'];
         }
@@ -103,7 +104,8 @@ class ScholarshipController extends Controller
         /* For image uploading */
         if($image = $request->file('scholarship_imagePath')) {
             $input['scholarship_imagePath'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
+            $destinationPath = public_path('uploads/scholarship_images'); //upload path for online
+            // $destinationPath = env('UPLOAD_PATH').'scholarship_images/'; //upload path for online
             $image->move($destinationPath, $input['scholarship_imagePath']);
             $imagePath = 'scholarship_images/'.$input['scholarship_imagePath'];
         }

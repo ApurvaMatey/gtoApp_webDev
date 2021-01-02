@@ -51,7 +51,7 @@
                                             </thead>
                                             <tbody>
                                                 @if($adminData)
-                                                    @php 
+                                                    @php
                                                         $i = 1
                                                     @endphp
                                                     @foreach($adminData as $admin)
@@ -62,7 +62,7 @@
                                                         <td>{{ $admin['email'] }}</td>
                                                         <td>{{ $admin['phone'] }}</td>
                                                         <td>
-                                                            {{ $admin['addedBy'] }}
+                                                            {{ $admin['adminName'] }}
                                                         </td>
                                                         <td>
                                                             <button class="btn btn-success btn-icon" onclick="editAdminModal({{ $admin['adminId'] }})"><i class="typcn typcn-edit"></i></button><br/>

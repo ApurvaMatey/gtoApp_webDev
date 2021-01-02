@@ -10,7 +10,7 @@
                     <a href="#" class="close">&times;</a>
                 </div><!-- az-header-menu-header -->
                 <ul class="nav">
-                    <li class="nav-item active show nav-home">
+                    <li class="nav-item active nav-home">
                         <a href="{{ url('home') }}" class="nav-link nav-home">
                             <i class="typcn typcn-chart-area-outline"></i> Casa
                         </a>

@@ -14,7 +14,8 @@ class ScholarshipModel extends Model
     public function getScholarshipList()
     {
         $scholarshipData = DB::table('tbl_scholarship')
-                ->select('*')
+                ->join('tbl_admin', 'tbl_scholarship.addedBy', '=', 'tbl_admin.id')
+                ->select('tbl_scholarship.*', 'tbl_admin.name')
                 ->get()
                 ->toArray();
 
@@ -28,6 +29,7 @@ class ScholarshipModel extends Model
                     'imagePath' => $row->imagePath,
                     'url' => $row->url,
                     'addedBy' => $row->addedBy,
+                    'adminName' => $row->name,
                     'createdAt' => $row->createdAt,
                     'updatedAt' => $row->updatedAt
                 );

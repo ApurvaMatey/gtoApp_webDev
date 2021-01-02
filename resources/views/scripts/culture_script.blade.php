@@ -49,8 +49,8 @@
 
                         $('#edit-culture-id').val(response.cultureId);
                         $('#culture_title').val(response.title);
-                        $('#culture_description').val(response.description);
-                        // $('#culture_imagePath').val(response.imagePath);
+                        CKEDITOR.instances['culture_description'].setData(response.description);
+                        document.getElementById("edit-display-img").src = response.imagePathFullPath;
                         $('#culture_url').val(response.url);
                         
                         $('#modal-edit-culture').modal('show');
@@ -65,6 +65,76 @@
                 // Closing the alert 
                 $('.alert-success').alert('close'); 
             }, 7000);
+        </script>
+
+        <script type="text/javascript">
+            // For Add Function
+            CKEDITOR.on('instanceReady', function () {
+                $('form textarea').attr('required', '');
+                $.each(CKEDITOR.instances, function (instance) {
+                    CKEDITOR.instances[instance].on("change", function (e) {
+                        for (instance in CKEDITOR.instances) {
+                            CKEDITOR.instances[instance].updateElement();
+                            // $('form').parsley().validate();
+                        }
+                    });
+                });
+            });
+
+            // For Edit Function
+            // CKEDITOR.on('instanceReady', function () {
+            //     $('#culture_description').attr('required', '');
+            //     $.each(CKEDITOR.instances, function (instance) {
+            //         CKEDITOR.instances[instance].on("change", function (e) {
+            //             for (instance in CKEDITOR.instances) {
+            //                 CKEDITOR.instances[instance].updateElement();
+            //                 $('form').parsley().validate(); //Not Working please comment this line
+            //             }
+            //         });
+            //     });
+            // });
+        </script>
+
+        <script>
+            // For Add Function
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var element = document.getElementById("display-img");
+                    element.classList.remove("d-none");
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#display-img')
+                            .attr('src', e.target.result)
+                            // .width(150)
+                            // .height(200);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            // For Edit Function
+            function editReadURL(input) {
+                if (input.files && input.files[0]) {
+                    var element = document.getElementById("edit-display-img");
+                    element.classList.remove("d-none");
+
+                    // img-culture
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#edit-display-img')
+                            .attr('src', e.target.result)
+                            // .width(150)
+                            // .height(200);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
         </script>
     </body>
 </html>

@@ -3,12 +3,19 @@
 
         <!-- Lib Folder Link -->
         <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('lib/jquery-ui/ui/widgets/datepicker.js') }}"></script>
         <script src="{{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('lib/ionicons/ionicons.js') }}"></script>
+        <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+        <script src="{{ asset('lib/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset('lib/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
+        <script src="{{ asset('lib/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
+        <script src="{{ asset('lib/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
         <script src="{{ asset('lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
         <script src="{{ asset('lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
         <script src="{{ asset('lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script>
-        <script src="{{ asset('lib/ionicons/ionicons.js') }}"></script>
+        
         <script src="{{ asset('lib/parsleyjs/parsley.min.js') }}"></script>
         <!-- <script src="{{ asset('lib/jquery.flot/jquery.flot.js') }}"></script> -->
         <!-- <script src="{{ asset('lib/jquery.flot/jquery.flot.resize.js') }}"></script> -->
@@ -31,3 +38,21 @@
         <!-- <script src="{{ asset('js/map.bluewater.js') }}"></script> -->
         <!-- <script src="{{ asset('js/map.mapbox.js') }}"></script> -->
         <!-- <script src="{{ asset('js/map.shiftworker.js') }}"></script> -->
+
+        <!-- CKEditor CDN -->
+        <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+        <!-- Menu Active Class -->
+        <script>
+                $(document).ready(function() {
+                        $('.ckeditor').ckeditor();
+                });
+        
+                var pgurl = window.location.href;
+                $(".nav li a").each(function() {
+                        console.log($(this).attr("href"));
+                        if($(this).attr("href") == pgurl) {
+                                $(this).addClass("active");
+                        }
+                });
+        </script>

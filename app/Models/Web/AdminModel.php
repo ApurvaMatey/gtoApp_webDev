@@ -4,6 +4,7 @@ namespace App\Models\Web;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Session;
 use DB;
 
 class AdminModel extends Model
@@ -15,6 +16,8 @@ class AdminModel extends Model
     {
         $adminData = DB::table('tbl_admin')
                 ->select('*')
+                ->where('canDelete', '=', 1)
+                ->where('id', '!=', Session::get('adminId'))
                 ->get()
                 ->toArray();
 
@@ -28,6 +31,7 @@ class AdminModel extends Model
                     'email' => $row->email,
                     'phone' => $row->phone,
                     'addedBy' => $row->addedBy,
+                    'adminName' => $this->getAdminNameById($row->addedBy),
                     'canDelete' => $row->canDelete,
                     'createdAt' => $row->createdAt,
                     'updatedAt' => $row->updatedAt
@@ -37,6 +41,21 @@ class AdminModel extends Model
             return $adminList;
         } else{
             return null;
+        }
+    }
+
+    //Abhay
+    public function getAdminNameById($adminId)
+    {
+        $adminName = DB::table('tbl_admin')
+                ->select('name')
+                ->where('id', $adminId)
+                ->first();
+
+        if($adminName) {
+            return $adminName->name;
+        } else{
+            return false;
         }
     }
 

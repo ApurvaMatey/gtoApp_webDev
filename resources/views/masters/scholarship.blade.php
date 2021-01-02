@@ -64,7 +64,7 @@
                                                         <td>{{ $scholarship['imagePath'] }}</td>
                                                         <td>{{ $scholarship['url'] }}</td>
                                                         <td>
-                                                            {{ $scholarship['addedBy'] }}
+                                                            {{ $scholarship['adminName'] }}
                                                         </td>
                                                         <td>
                                                             <button class="btn btn-success btn-icon" onclick="editScholarshipModal({{ $scholarship['scholarshipId'] }})"><i class="typcn typcn-edit"></i></button><br/>
@@ -94,7 +94,7 @@
 
 <!-- Add Scholarship Modal -->
 <div class="modal" id="modal-add-scholarship">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content modal-content-demo">
             <form method="post" action="{{ url('addScholarship') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                 {{ csrf_field() }}
@@ -112,10 +112,18 @@
                                 <input type="text" name="title" class="form-control" placeholder="Entrar el título de la cultura" required>
                             </div><!-- form-group -->
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
                                 <input type="text" name="description" class="form-control" placeholder="Entrar descripción" required>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
+                                <textarea class="ckeditor form-control" id="body" placeholder="Entrar descripción" name="description" required></textarea>
                             </div><!-- form-group -->
                         </div>
                     </div>
@@ -123,6 +131,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Imagen: </label>
                             <input type="file" name="imagePath" class="form-control" placeholder="Seleccione Imagen">
+                            <img class="d-none" id="display-img" src="#" alt="your image" width="100%" height="200px">
                         </div><!-- form-group -->
                         <div class="col-md-6">
                             <label class="form-label">URL: <span class="tx-danger">*</span></label>

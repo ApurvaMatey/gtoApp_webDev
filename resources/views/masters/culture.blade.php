@@ -60,11 +60,11 @@
                                                     <tr>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ $culture['title'] }}</td>
-                                                        <td>{{ $culture['description'] }}</td>
+                                                        <td>{!! $culture['description'] !!}</td>
                                                         <td>{{ $culture['imagePath'] }}</td>
                                                         <td>{{ $culture['url'] }}</td>
                                                         <td>
-                                                            {{ $culture['addedBy'] }}
+                                                            {{ $culture['adminName'] }}
                                                         </td>
                                                         <td>
                                                             <button class="btn btn-success btn-icon" onclick="editCultureModal({{ $culture['cultureId'] }})"><i class="typcn typcn-edit"></i></button><br/>
@@ -94,7 +94,7 @@
 
 <!-- Add Culture Modal -->
 <div class="modal" id="modal-add-culture">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content modal-content-demo">
             <form method="post" action="{{ url('addCulture') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                 {{ csrf_field() }}
@@ -112,17 +112,26 @@
                                 <input type="text" name="title" class="form-control" placeholder="Entrar el título de la cultura" required>
                             </div><!-- form-group -->
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
                                 <input type="text" name="description" class="form-control" placeholder="Entrar descripción" required>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
+                                <textarea class="ckeditor form-control" id="body" placeholder="Entrar descripción" name="description" required></textarea>
                             </div><!-- form-group -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label">Imagen: <span class="tx-danger">*</span></label>
-                            <input type="file" name="imagePath" class="form-control" placeholder="Seleccione Imagen" required>
+                            <input type="file" name="imagePath" class="form-control" style="overflow-x: hidden" placeholder="Seleccione Imagen" onchange="readURL(this);" required>
+                            <img class="d-none" id="display-img" src="#" alt="your image" width="100%" height="200px">
                         </div><!-- form-group -->
                         <div class="col-md-6">
                             <label class="form-label">URL: <span class="tx-danger">*</span></label>
@@ -141,7 +150,7 @@
 
 <!-- Edit Culture Modal -->
 <div class="modal" id="modal-edit-culture">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content modal-content-demo">
             <form method="post" action="{{ url('editCulture') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                 {{ csrf_field() }}
@@ -167,17 +176,26 @@
                                 <input type="text" name="culture_title" id="culture_title" class="form-control" placeholder="Entrar cultura título" required>
                             </div><!-- form-group -->
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
                                 <input type="text" name="culture_description" id="culture_description" class="form-control" placeholder="Entrar descripción" required>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Descripción: <span class="tx-danger">*</span></label>
+                                <textarea class="ckeditor form-control" placeholder="Entrar descripción" name="culture_description" id="culture_description" required></textarea>
                             </div><!-- form-group -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label">Imagen: </label>
-                            <input type="file" name="culture_imagePath" id="culture_imagePath" class="form-control" placeholder="Seleccione Imagen">
+                            <input type="file" name="culture_imagePath" style="overflow-x: hidden" id="culture_imagePath" class="form-control" placeholder="Seleccione Imagen" onchange="editReadURL(this);">
+                            <img src="#" class="" id="edit-display-img" alt="your image" width="100%" height="200px">
                         </div><!-- form-group -->
                         <div class="col-md-6">
                             <label class="form-label">URL: <span class="tx-danger">*</span></label>

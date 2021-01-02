@@ -62,9 +62,6 @@ Route::post('/editCulture', [CultureController::class,'editCulture'])->name('edi
 /* Delete Culture */
 Route::post('/deleteCulture', [CultureController::class,'deleteCulture'])->name('delete');
 
-/* Emergency Master */
-Route::get('/emergency', [EmergencyController::class,'getEmergencyList'])->name('emergency');
-
 /* Scholarship Master */
 Route::get('/scholarship', [ScholarshipController::class,'getScholarshipList'])->name('scholarship');
 
@@ -79,3 +76,18 @@ Route::post('/editScholarship', [ScholarshipController::class,'editScholarship']
 
 /* Delete Scholarship */
 Route::post('/deleteScholarship', [ScholarshipController::class,'deleteScholarship'])->name('delete');
+
+/* Emergency Master */
+Route::get('/emergency', [EmergencyController::class,'getEmergencyList'])->name('emergency');
+
+/* Get Emergency By ID */
+Route::post('/getEmergency', [EmergencyController::class,'getEmergencyById'])->name('getEmergency');
+
+/* Add Emergency */
+Route::post('/addEmergency', [EmergencyController::class,'addEmergency'])->name('add');
+
+/* Edit Emergency */
+Route::post('/editEmergency', [EmergencyController::class,'editEmergency'])->name('edit');
+
+/* Delete Emergency */
+Route::post('/deleteEmergency', [EmergencyController::class,'deleteEmergency'])->name('delete');

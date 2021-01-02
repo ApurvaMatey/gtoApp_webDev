@@ -14,7 +14,8 @@ class EmergencyModel extends Model
     public function getEmergencyList()
     {
         $emergencyData = DB::table('tbl_emergency_no')
-                ->select('*')
+                ->join('tbl_admin', 'tbl_emergency_no.addedBy', '=', 'tbl_admin.id')
+                ->select('tbl_emergency_no.*', 'tbl_admin.name')
                 ->get()
                 ->toArray();
 
@@ -29,6 +30,7 @@ class EmergencyModel extends Model
                     'description' => $row->description,
                     'callCount' => $row->callCount,
                     'addedBy' => $row->addedBy,
+                    'adminName' => $row->name,
                     'createdAt' => $row->createdAt,
                     'updatedAt' => $row->updatedAt
                 );

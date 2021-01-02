@@ -14,7 +14,8 @@ class CultureModel extends Model
     public function getCultureList()
     {
         $cultureData = DB::table('tbl_culture')
-                ->select('*')
+                ->join('tbl_admin', 'tbl_culture.addedBy', '=', 'tbl_admin.id')
+                ->select('tbl_culture.*', 'tbl_admin.name')
                 ->get()
                 ->toArray();
 
@@ -29,6 +30,7 @@ class CultureModel extends Model
                     'imagePath' => $row->imagePath,
                     'url' => $row->url,
                     'addedBy' => $row->addedBy,
+                    'adminName' => $row->name,
                     'createdAt' => $row->createdAt,
                     'updatedAt' => $row->updatedAt
                 );
@@ -54,6 +56,7 @@ class CultureModel extends Model
                 'title' => $cultureData->title,
                 'description' => $cultureData->description,
                 'imagePath' => $cultureData->imagePath,
+                'imagePathFullPath' => env('LINK_PATH').$cultureData->imagePath,
                 'url' => $cultureData->url,
                 'addedBy' => $cultureData->addedBy,
                 'createdAt' => $cultureData->createdAt,

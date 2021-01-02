@@ -60,11 +60,12 @@ class CultureController extends Controller
         /* For image uploading */
         if($image = $request->file('imagePath')) {
             $input['imagePath'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
+            $destinationPath = public_path('uploads/culture_images'); //upload path for online
+            // $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
             $image->move($destinationPath, $input['imagePath']);
             $imagePath = 'culture_images/'.$input['imagePath'];
 
-            Log::error($destinationPath);exit();
+            // Log::error($destinationPath);exit();
         }
         
         /* Array for Culture */
@@ -106,12 +107,12 @@ class CultureController extends Controller
         /* For image uploading */
         if($image = $request->file('culture_imagePath')) {
             $input['culture_imagePath'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
-            // $image->move($destinationPath, $input['culture_imagePath']);
-            $image->move(base_path($destinationPath), $image->getClientOriginalName());
+            $destinationPath = public_path('uploads/culture_images'); //upload path for online
+            // $destinationPath = env('UPLOAD_PATH').'culture_images/'; //upload path for online
+            $image->move($destinationPath, $input['culture_imagePath']);
             $imagePath = 'culture_images/'.$input['culture_imagePath'];
 
-            Log::error(base_path($destinationPath));exit();
+            // Log::error($destinationPath);exit();
         }
 
         /* Array for Update Culture */
