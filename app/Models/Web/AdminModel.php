@@ -39,7 +39,7 @@ class AdminModel extends Model
                 array_push($adminList, $array);
             }
             return $adminList;
-        } else{
+        } else {
             return null;
         }
     }
@@ -54,7 +54,7 @@ class AdminModel extends Model
 
         if($adminName) {
             return $adminName->name;
-        } else{
+        } else {
             return false;
         }
     }
@@ -79,7 +79,7 @@ class AdminModel extends Model
                 'updatedAt' => $adminData->updatedAt
             );
             return $array;
-        } else{
+        } else {
             return false;
         }
     }
@@ -93,7 +93,7 @@ class AdminModel extends Model
 
         if($isAdminExists) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -108,7 +108,7 @@ class AdminModel extends Model
 
         if($isEmailExists) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -122,7 +122,7 @@ class AdminModel extends Model
 
         if($isAdminExists) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -135,7 +135,7 @@ class AdminModel extends Model
         
         if($adminId > 0) {
             return $adminId;
-        } else{
+        } else {
             return false;
         }
     }
@@ -149,7 +149,7 @@ class AdminModel extends Model
 
         if($updateAdminData) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -162,7 +162,7 @@ class AdminModel extends Model
         
         if($deleteAdmin) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -177,8 +177,55 @@ class AdminModel extends Model
 
         if($adminData) {
             return count($adminData);
-        } else{
+        } else {
             return 0;
+        }
+    }
+
+    //Abhay
+    public function updateAdminPassword($adminId, $passHash)
+    {
+        $updateAdminData = DB::table('tbl_admin')
+                    ->where('id', $adminId)
+                    ->update(['password' => $passHash]);
+
+        if($updateAdminData) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Abhay
+    public function addEmailTokenReset($resetTokenArr)
+    {
+        $tokenEmail = DB::table('password_resets')
+                    ->update($resetTokenArr);
+
+        if($tokenEmail) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Abhay
+    public function getUserDataByEmail($email)
+    {
+        $adminData = DB::table('tbl_admin')
+                ->select('*')
+                ->where('email', $email)
+                ->first();
+
+        if($adminData) {
+            $array = array( 
+                'adminId' => $adminData->id,
+                'name' => $adminData->name,
+                'email' => $adminData->email
+            );
+            return $array;
+        } else {
+            return false;
         }
     }
 }

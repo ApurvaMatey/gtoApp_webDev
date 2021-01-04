@@ -1,8 +1,6 @@
-        <script src="{{ asset('lib/spectrum-colorpicker/spectrum.js') }}"></script>
-        <script src="{{ asset('lib/pickerjs/picker.min.js') }}"></script>
         <script>
-            $(function() {
-            'use strict'
+            // $(function() {
+            // 'use strict'
 
             $('#example1').DataTable({
                 language: {
@@ -24,7 +22,7 @@
             // Select2
             // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
-            });
+            // });
         </script>
 
         <script>
@@ -47,7 +45,7 @@
                     data: { emergencyId: emergencyId} ,
                     dataType: "json",
                     success:function(response) {
-                        console.log(response);
+                        // console.log(response);
 
                         $('#edit-emergency-id').val(response.emergencyId);
                         $('#emergency_number').val(response.number);
@@ -61,11 +59,6 @@
                     }
                 });
             }
-
-            setTimeout(function () {
-                // Closing the alert 
-                $('.alert-success').alert('close'); 
-            }, 7000);
         </script>
 
         <script type="text/javascript">
@@ -93,17 +86,6 @@
             //             }
             //         });
             //     });
-            // });
-        </script>
-
-        <script>
-            // $(function() {
-            //     'use strict'
-
-                $('#showAlpha').spectrum({
-                    color: 'rgba(23,162,184,0.5)',
-                    showAlpha: true
-                });
             // });
         </script>
     </body>

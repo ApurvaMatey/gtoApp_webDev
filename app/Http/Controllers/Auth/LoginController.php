@@ -41,7 +41,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     
     /*
     * Create a new controller instance.

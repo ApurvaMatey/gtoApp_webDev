@@ -92,5 +92,11 @@ Route::post('/editEmergency', [EmergencyController::class,'editEmergency'])->nam
 /* Delete Emergency */
 Route::post('/deleteEmergency', [EmergencyController::class,'deleteEmergency'])->name('delete');
 
-/* Change Password */
+/* Change Password View */
 Route::get('/changepassword', [AdminController::class,'changePassword'])->name('changepassword');
+
+/* Change Password Function */
+Route::post('/changepasswordfunction', [AdminController::class,'changePasswordFunction'])->name('changepassword');
+
+/* Send Reset Email */
+Route::post('/sendmail', [AdminController::class,'sendResetMail'])->name('sendmail');

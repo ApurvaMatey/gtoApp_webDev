@@ -60,11 +60,6 @@
                     }
                 });
             }
-
-            setTimeout(function () {
-                // Closing the alert 
-                $('.alert-success').alert('close'); 
-            }, 7000);
         </script>
 
         <script type="text/javascript">

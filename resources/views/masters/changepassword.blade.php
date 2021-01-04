@@ -4,6 +4,26 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+                <!-- Alert Success Or Error On Functionality -->
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Well done!</strong> {{ session('success') }}
+                    </div><!-- alert -->
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger mg-b-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Oh snap!</strong> {{ session('error') }}
+                    </div><!-- alert -->
+
+                @endif
+
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
@@ -14,7 +34,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form method="post" action="{{ url('addCulture') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
+                            <form method="post" action="{{ url('changepasswordfunction') }}" role="form" novalidate="novalidate" enctype="multipart/form-data" data-parsley-validate>
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">

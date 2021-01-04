@@ -45,7 +45,7 @@
                     data: { scholarshipId: scholarshipId} ,
                     dataType: "json",
                     success:function(response) {
-                        console.log(response);
+                        // console.log(response);
 
                         $('#edit-scholarship-id').val(response.scholarshipId);
                         $('#scholarship_title').val(response.title);
@@ -61,11 +61,6 @@
                     }
                 });
             }
-
-            setTimeout(function () {
-                // Closing the alert 
-                $('.alert-success').alert('close'); 
-            }, 7000);
         </script>
 
         <script type="text/javascript">

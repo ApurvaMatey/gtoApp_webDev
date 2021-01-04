@@ -60,7 +60,10 @@
                                                     <tr>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ $emergency['number'] }}</td>
-                                                        <td>{{ $emergency['colorCode'] }}</td>
+                                                        <td>
+                                                            <div style="height:25px; width:25px; background-color: {{ $emergency['colorCode'] }}"></div>
+                                                            {{ $emergency['colorCode'] }}
+                                                        </td>
                                                         <td>{!! $emergency['description'] !!}</td>
                                                         <td>{{ $emergency['callCount'] }}</td>
                                                         <td>
@@ -114,7 +117,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Codigo de color: <span class="tx-danger">*</span></label>
+                                <label class="form-label">Codigo de color: <span class="tx-danger">* Ejemplo (#EEAAFF)</span></label>
                                 <input type="text" name="color_code" class="form-control" placeholder="Seleccionar código de color" required>
                                 <!-- <div><input type="text" id="showAlpha"></div> -->
                             </div><!-- form-group -->
@@ -168,7 +171,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Codigo de color: <span class="tx-danger">*</span></label>
+                                <label class="form-label">Codigo de color: <span class="tx-danger">* Ejemplo (#EEAAFF)</span></label>
                                 <input type="text" name="emergency_color_code" id="emergency_color_code" class="form-control" placeholder="Seleccionar código de color" required>
                                 <!-- <div><input type="text" id="showAlpha"></div> -->
                             </div><!-- form-group -->
