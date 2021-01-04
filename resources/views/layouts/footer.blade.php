@@ -48,11 +48,19 @@
                         $('.ckeditor').ckeditor();
                 });
         
-                var pgurl = window.location.href;
-                $(".nav li a").each(function() {
-                        console.log($(this).attr("href"));
-                        if($(this).attr("href") == pgurl) {
-                                $(this).addClass("active");
-                        }
+                // var pgurl = window.location.href;
+                // $(".nav li a").each(function() {
+                //         console.log($(this).attr("href"));
+                //         if($(this).attr("href") == pgurl) {
+                //                 $(this).addClass("active");
+                //         }
+                // });
+
+                $(document).ready(function () {
+                        var url = window.location;
+                        $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+                        $('ul.nav a').filter(function() {
+                        return this.href == url;
+                        }).parent().addClass('active');
                 });
         </script>

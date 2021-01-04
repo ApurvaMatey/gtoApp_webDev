@@ -153,4 +153,17 @@ class AdminController extends Controller
             return redirect()->route('admin')->with('error','El administrador no existe / eliminado.');
         }
     }
+
+    /* Function to Change Password */
+    //Abhay
+    public function changePassword(Request $request)
+    {
+        $adminModel = new adminModel();
+        $adminId = $request->input('adminIdChangePassword');
+
+        /* Get Admin data */
+        $data['adminDetails'] = $adminModel->getAdminNameById($adminId);
+        // Log::error($data['adminData']);
+        return view('masters.changepassword', $data);
+    }
 }

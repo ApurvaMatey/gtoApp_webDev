@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         /* Get Admin Count */
         $data['scholarshipCount'] = $scholarshipModel->getScholarshipCount();
-        Log::error($data);
+        // Log::error($data);
         return view('home', $data);
     }
 }

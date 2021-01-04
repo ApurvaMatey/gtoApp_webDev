@@ -15440,7 +15440,7 @@ body {
   justify-content: center; }
 
 .az-card-signin {
-  height: 560px;
+  /* height: 560px; */
   padding: 20px;
   display: flex;
   flex-direction: column;

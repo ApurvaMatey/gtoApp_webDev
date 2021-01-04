@@ -91,3 +91,6 @@ Route::post('/editEmergency', [EmergencyController::class,'editEmergency'])->nam
 
 /* Delete Emergency */
 Route::post('/deleteEmergency', [EmergencyController::class,'deleteEmergency'])->name('delete');
+
+/* Change Password */
+Route::get('/changepassword', [AdminController::class,'changePassword'])->name('changepassword');

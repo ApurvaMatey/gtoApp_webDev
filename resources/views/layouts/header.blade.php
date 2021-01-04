@@ -10,7 +10,7 @@
                     <a href="#" class="close">&times;</a>
                 </div><!-- az-header-menu-header -->
                 <ul class="nav">
-                    <li class="nav-item active nav-home">
+                    <li class="nav-item nav-home">
                         <a href="{{ url('home') }}" class="nav-link nav-home">
                             <i class="typcn typcn-chart-area-outline"></i> Casa
                         </a>
@@ -53,7 +53,8 @@
                             <span>Admin</span>
                         </div><!-- az-header-profile -->
 
-                        <a href="#" class="dropdown-item"><i class="typcn typcn-edit"></i> Cambia la contraseña</a>
+                        <a href="{{ url('changepassword') }}" class="dropdown-item"><i class="typcn typcn-edit"></i> Cambia la contraseña</a>
+                        <input class="d-none" id="adminIdChangePassword" value="{{ Session::get('adminId') }}">
                         <a href="{{ url('logout') }}" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Cerrar sesión</a>
                     </div><!-- dropdown-menu -->
                 </div>
