@@ -98,5 +98,6 @@ Route::get('/changepassword', [AdminController::class,'changePassword'])->name('
 /* Change Password Function */
 Route::post('/changepasswordfunction', [AdminController::class,'changePasswordFunction'])->name('changepassword');
 
-/* Send Reset Email */
-Route::post('/sendmail', [AdminController::class,'sendResetMail'])->name('sendmail');
+/* Forget Password */
+Route::get('forget-password', 'Auth\ForgotPasswordController@getEmail')->name('forget-password');
+Route::post('forget-password', 'Auth\ForgotPasswordController@postEmail')->name('forget-password');

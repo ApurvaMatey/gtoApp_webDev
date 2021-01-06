@@ -112,7 +112,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Número: <span class="tx-danger">*</span></label>
-                                <input type="text" name="number" class="form-control" placeholder="Por favor ingrese el numero" required>
+                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type = "number" maxlength = "3" minlength = "3" name="number" class="form-control"
+                                    placeholder="Por favor ingrese el numero" required>
                             </div><!-- form-group -->
                         </div>
                         <div class="col-md-6">

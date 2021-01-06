@@ -1,6 +1,6 @@
         <script>
-            $(function() {
-            'use strict'
+            // $(function() {
+            // 'use strict'
 
             $('#example1').DataTable({
                 language: {
@@ -22,7 +22,7 @@
             // Select2
             // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
-            });
+            // });
         </script>
 
         <script>

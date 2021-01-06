@@ -39,14 +39,31 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label">Entrar contraseña: <span class="tx-danger">*</span></label>
-                                            <input type="password" name="changePass" class="form-control" placeholder="Por favor, entrar contraseña" required>
-                                        </div><!-- form-group -->
-                                    </div>
+                                            <label class="form-label">Nueva contraseña: <span class="tx-danger">*</span></label>
+                                            <input id="password1" name="changePass" type="password" class="form-control password"
+                                                placeholder="Por favor, entrar contraseña"
+                                                data-parsley-minlength="4"
+                                                data-parsley-errors-container=".errorspannewpassinput"
+                                                data-parsley-required-message="Por favor, ingrese su nueva contraseña."
+                                                data-parsley-uppercase="1"
+                                                data-parsley-lowercase="1"
+                                                data-parsley-number="1"
+                                                data-parsley-special="1"
+                                                data-parsley-required />
+                                            <span class="errorspannewpassinput"></span>
+                                        </div>
+                                    </div><!-- form-group -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label">Confirmar contraseña: <span class="tx-danger">*</span></label>
-                                            <input type="password" name="confirmPass" class="form-control" placeholder="Por favor, entrar confirmar contraseña" required>
+                                            <input name="confirmPass" id="password2" type="password" class="form-control password"
+                                                placeholder="Por favor, entrar confirmar contraseña"
+                                                data-parsley-minlength="4"
+                                                data-parsley-errors-container=".errorspanconfirmnewpassinput"
+                                                data-parsley-required-message="Por favor, vuelva a ingresar su nueva contraseña."
+                                                data-parsley-equalto="#password1"
+                                                data-parsley-required />
+                                            <span class="errorspanconfirmnewpassinput"></span>
                                         </div>
                                     </div><!-- form-group -->
                                 </div>

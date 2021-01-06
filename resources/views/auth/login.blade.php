@@ -19,7 +19,7 @@
         <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
         <meta name="author" content="BootstrapDash">
 
-        <title>Azia Responsive Bootstrap 4 Dashboard Template</title>
+        <title>{{ config('app.name', 'GTO') }}</title>
 
         <!-- vendor css -->
         <link href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
@@ -31,9 +31,30 @@
 
     </head>
     <body class="az-body">
+        <!-- Alert Success Or Error On Functionality -->
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Well done!</strong> {{ session('success') }}
+            </div><!-- alert -->
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger mg-b-0" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Oh snap!</strong> {{ session('error') }}
+            </div><!-- alert -->
+        @endif
+
         <div class="az-signin-wrapper">
             <div class="az-card-signin">
-                <h1 class="az-logo">GTO</h1>
+                <!-- <h1 class="az-logo">GTO</h1> -->
+                <img src="{{ url('/images/logo/Main_Logo.png') }}" width="100%" alt="GTO">
+                <br/>
                 <div class="az-signin-header">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -42,7 +63,7 @@
                             <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         </div><!-- form-group -->
                         <div class="form-group">
-                            <label>Password</label>
+                            <label>Contraseña</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                         </div><!-- form-group -->
                         <div class="form-group row">
@@ -50,7 +71,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Recuérdame') }}
                                     </label>
                                 </div>
                             </div>
@@ -58,12 +79,15 @@
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Iniciar sesión') }}
                                 </button>
-
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="btn-link" href="{{ route('forget-password') }}">
+                                        {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif
                             </div>
@@ -79,10 +103,10 @@
 
         <script src="{{ asset('js/azia.js') }}"></script>
         <script>
-        $(function(){
-            'use strict'
-
-        });
+            setTimeout(function () {
+                // Closing the alert 
+                $('.alert-success').alert('close'); 
+            }, 7000);
         </script>
         <!-- New Ends -->
     </body>

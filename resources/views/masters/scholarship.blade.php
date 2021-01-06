@@ -43,9 +43,9 @@
                                                 <tr>
                                                     <th class="wd-20p">#</th>
                                                     <th class="wd-20p">Título</th>
-                                                    <th class="wd-25p">Descripción</th>
+                                                    <!--<th class="wd-25p">Descripción</th>-->
                                                     <th class="wd-20p">Imagen</th>
-                                                    <th class="wd-20p">Enlace (url)</th>
+                                                    <!--<th class="wd-20p">Enlace (url)</th>-->
                                                     <th class="wd-15p">Añadido por</th>
                                                     <th class="wd-20p">Acción</th>
                                                 </tr>
@@ -60,9 +60,12 @@
                                                     <tr>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ $scholarship['title'] }}</td>
-                                                        <td>{{ $scholarship['description'] }}</td>
-                                                        <td>{{ $scholarship['imagePath'] }}</td>
-                                                        <td>{{ $scholarship['url'] }}</td>
+                                                        <!--<td>{{ $scholarship['description'] }}</td>-->
+                                                        <td>
+                                                            <img src="{{ env('LINK_PATH').$scholarship['imagePath'] }}" width="100%" height="200px">
+                                                            <!--{{ $scholarship['imagePath'] }}-->
+                                                        </td>
+                                                        <!--<td>{{ $scholarship['url'] }}</td>-->
                                                         <td>
                                                             {{ $scholarship['adminName'] }}
                                                         </td>

@@ -7,6 +7,7 @@ use App\Mail\EmailNotification;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Log;
+use Mail;
 
 //Models
 use App\Models\Web\AdminModel;
@@ -184,94 +185,6 @@ class AdminController extends Controller
             return redirect()->route('home')->with('success','Cambio de contraseña exitoso !!');
         } else {
             return redirect()->route('changepassword')->with('error','Algo salió mal. Por favor, vuelva a intentarlo !!');
-        }
-    }
-
-    //Abhay
-    public function sendResetMail() {
-        $adminModel = new adminModel();
-
-        $email = $request->input('email');
-        $token = bin2hex(random_bytes(16)); //generates a crypto-secure 32 characters long
-
-        Log::error($email);
-        Log::error($token);
-        print_r('Hello');exit();
-        $resetTokenArr = array(
-            'email' => $email,
-            'token' => $token,
-            'created_at' => date('Y-m-d H:i:s')
-        );
-
-        if($adminModel->addEmailTokenReset($resetTokenArr))
-        {
-            $userData = $adminModel->getUserDataByEmail($email);
-
-            if($userData)
-            {
-                //Laravel Function Send Mail
-                Mail::to($email)->send(new EmailNotification($userData));
-
-                return redirect()->route('login')->with('error','Se ha enviado un correo electrónico a su identificación de correo electrónico registrada. Por favor revise su correo electrónico.');
-            } else {
-                return redirect()->route('password.reset')->with('error','Usuario no encontrado !!');
-            }
-            
-
-            //Send Mail
-            // $config = Array(
-            //     'protocol' => 'smtp',
-            //     'smtp_host' => 'webmail.e-pickup.in',
-            //     'smtp_user' => 'no-reply@e-pickup.in',
-            //     'smtp_pass' => 'n87,?B2RQWdu',
-            //     // 'smtp_port' => 465,
-            //     'IMAP_port' => 993,
-            //     'POP3_port' => 995,
-            //     'smtp_timeout' => '10',
-            //     'newline' => "\r\n",
-            //     'mailtype'  => 'text', 
-            //     'charset'   => 'iso-8859-1',
-            //     'validation' => TRUE
-            // );
-    
-            // $this->load->library('email', $config);
-            // $this->email->initialize($config);
-            // $this->email->set_newline("\r\n");
-            // $this->email->set_header('Content-type','text/html');
-            // $this->email->set_mailtype("html");
-            // $this->email->from('no-reply@e-pickup.in', 'E-Pickup');
-            // $this->email->to($data['email']);
-            // // $this->email->cc('dhirajpninave@gmail.com');
-            // // $this->email->attach(base_url('uploads/pan_images/pi_20190829181032.jpg'));
-            
-            // $this->email->subject($subject);
-    
-            // $body = $this->load->view($emailview, $data, TRUE);
-            // $this->email->message($body);
-            // // $this->email->attach("https://cm.e-pickup.in/test/uploads/pan_images/pi_20190829181032.jpg");
-            // // if($filePath != "") {
-            // //     $this->email->attach($filePath);
-            // // }
-    
-            // if($this->email->send())
-            // {
-            //     // print_r($_SERVER['DOCUMENT_ROOT']);
-            //     return 'Success';
-            // } else {
-            //     // print_r($this->email->print_debugger());
-            //     error_log($this->email->print_debugger());
-            //     show_error($this->email->print_debugger());
-            //     return 'Error';
-            // }
-
-
-
-
-
-
-
-        } else {
-            return redirect()->route('password.reset')->with('error','Algo salió mal. Por favor, vuelva a intentarlo !!');
         }
     }
 }
